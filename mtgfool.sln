@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mtgfool", "mtgfool\mtgfool.csproj", "{0AC27FE3-C16B-4C23-B6AA-7BA308B18268}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mtgfoolTests", "mtgfoolTests\mtgfoolTests.csproj", "{42114A3B-D501-4AB4-9ED2-3856950AE122}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0AC27FE3-C16B-4C23-B6AA-7BA308B18268}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AC27FE3-C16B-4C23-B6AA-7BA308B18268}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AC27FE3-C16B-4C23-B6AA-7BA308B18268}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0AC27FE3-C16B-4C23-B6AA-7BA308B18268}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42114A3B-D501-4AB4-9ED2-3856950AE122}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42114A3B-D501-4AB4-9ED2-3856950AE122}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42114A3B-D501-4AB4-9ED2-3856950AE122}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42114A3B-D501-4AB4-9ED2-3856950AE122}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
