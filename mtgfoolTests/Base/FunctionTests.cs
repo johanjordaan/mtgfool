@@ -33,7 +33,7 @@ namespace mtgfoolTests.Base
 		public void TestExpand ()
 		{
 			Func<SampleContext,List<string>> r1 = (ctx) => new List<string>() {"1","2","3"}; 
-			Func<SampleContext,List<string>> r2 = (ctx => new List<string>() {"a","b","c","d"}; 
+			Func<SampleContext,List<string>> r2 = (ctx) => new List<string>() {"a","b","c","d"}; 
 			Func<SampleContext,List<string>> r3 = (ctx) => new List<string>() {"Green","Blue"}; 
 
 
