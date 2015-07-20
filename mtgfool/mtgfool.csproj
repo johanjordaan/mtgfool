@@ -36,9 +36,14 @@
     <Compile Include="Base\IFunction.cs" />
     <Compile Include="Base\Parameter.cs" />
     <Compile Include="Base\IContext.cs" />
+    <Compile Include="Objects\Player.cs" />
+    <Compile Include="Objects\Game.cs" />
+    <Compile Include="Objects\Card.cs" />
+    <Compile Include="Objects\ManaPool.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Base\" />
+    <Folder Include="Objects\" />
   </ItemGroup>
 </Project>
