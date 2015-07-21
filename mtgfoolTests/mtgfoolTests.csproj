@@ -39,9 +39,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Base\" />
+    <Folder Include="Objects\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base\FunctionTests.cs" />
+    <Compile Include="Objects\ManaPoolTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\mtgfool\mtgfool.csproj">

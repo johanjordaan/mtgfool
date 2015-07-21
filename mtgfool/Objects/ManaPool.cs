@@ -1,24 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
+using mtgfool.Utils;
+using System.Diagnostics;
 
 namespace mtgfool.Objects
 {
 	public class ManaPool
 	{
-		public enum COLOR { White, Blue, Black, Green, Red, Colorless }
-
-		private Dictionary<COLOR, int> mana = new Dictionary<COLOR, int>();
+		private Dictionary<COLOR, int> mana  = new Dictionary<COLOR, int>();
 		public void Add(COLOR color,int amount) 
 		{
-			if (!mana.ContainsKey(color))
-				mana[color] = amount;
-			else
-				mana[color] += amount;
+			Trace.Assert (mana.ContainsKey (color));
+			Trace.Assert (amount > 0);
+
+			mana[color] += amount;
 		}
 
 		public bool Remove(COLOR color,int amount)
 		{
-			if (!mana.ContainsKey(color) || mana[color] < amount)
+			Trace.Assert (mana.ContainsKey (color));
+			Trace.Assert (amount > 0);
+
+			if (mana[color] < amount)
 			{
 				return false;
 			}
@@ -29,9 +32,17 @@ namespace mtgfool.Objects
 			}
 		}
 
+		public int this[COLOR key] 
+		{
+			get { return mana [key]; }
+		}
+
 		public void Clear()
 		{
 			mana.Clear();
+			foreach (var color in EnumUtil.GetValues<COLOR>()) {
+				mana [color] = 0;
+			}
 		}
 
 		public ManaPool() 
