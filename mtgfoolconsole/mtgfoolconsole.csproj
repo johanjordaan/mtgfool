@@ -3,10 +3,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{0AC27FE3-C16B-4C23-B6AA-7BA308B18268}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <RootNamespace>mtgfool</RootNamespace>
-    <AssemblyName>mtgfool</AssemblyName>
+    <ProjectGuid>{05B866F9-3437-4613-9A3E-268528B8F627}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>mtgfoolconsole</RootNamespace>
+    <AssemblyName>mtgfoolconsole</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -17,7 +17,7 @@
     <DefineConstants>DEBUG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
+    <Externalconsole>true</Externalconsole>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>full</DebugType>
@@ -25,29 +25,20 @@
     <OutputPath>bin\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
+    <Externalconsole>true</Externalconsole>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Base\Function.cs" />
-    <Compile Include="Base\IFunction.cs" />
-    <Compile Include="Base\Parameter.cs" />
-    <Compile Include="Base\IContext.cs" />
-    <Compile Include="Objects\Player.cs" />
-    <Compile Include="Objects\Game.cs" />
-    <Compile Include="Objects\Card.cs" />
-    <Compile Include="Objects\ManaPool.cs" />
-    <Compile Include="Objects\Enums.cs" />
-    <Compile Include="Utils\EnumUtil.cs" />
-    <Compile Include="Utils\AssertAndThrow.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <Folder Include="Base\" />
-    <Folder Include="Objects\" />
-    <Folder Include="Utils\" />
+    <ProjectReference Include="..\mtgfool\mtgfool.csproj">
+      <Project>{0AC27FE3-C16B-4C23-B6AA-7BA308B18268}</Project>
+      <Name>mtgfool</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

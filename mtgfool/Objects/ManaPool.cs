@@ -10,16 +10,16 @@ namespace mtgfool.Objects
 		private Dictionary<COLOR, int> mana  = new Dictionary<COLOR, int>();
 		public void Add(COLOR color,int amount) 
 		{
-			Trace.Assert (mana.ContainsKey (color));
-			Trace.Assert (amount > 0);
+			AssertAndThrow.IsTrue (mana.ContainsKey (color));
+			AssertAndThrow.IsTrue (amount > 0);
 
 			mana[color] += amount;
 		}
 
 		public bool Remove(COLOR color,int amount)
 		{
-			Trace.Assert (mana.ContainsKey (color));
-			Trace.Assert (amount > 0);
+			AssertAndThrow.IsTrue (mana.ContainsKey (color));
+			AssertAndThrow.IsTrue (amount > 0);
 
 			if (mana[color] < amount)
 			{

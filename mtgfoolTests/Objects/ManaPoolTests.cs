@@ -26,6 +26,7 @@ namespace mtgfoolTests.Objects
 
 			manaPool.Add (COLOR.Red, 2);
 			manaPool.Add (COLOR.Red, 2);
+			manaPool.Add (COLOR.Black, -1);
 			manaPool.Add (COLOR.Blue, 3);
 			foreach (var color in EnumUtil.GetValues<COLOR>()) {
 				switch (color) {
