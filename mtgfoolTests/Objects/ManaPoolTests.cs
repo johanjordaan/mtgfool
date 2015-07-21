@@ -26,7 +26,6 @@ namespace mtgfoolTests.Objects
 
 			manaPool.Add (COLOR.Red, 2);
 			manaPool.Add (COLOR.Red, 2);
-			manaPool.Add (COLOR.Black, -1);
 			manaPool.Add (COLOR.Blue, 3);
 			foreach (var color in EnumUtil.GetValues<COLOR>()) {
 				switch (color) {
@@ -44,6 +43,15 @@ namespace mtgfoolTests.Objects
 		}
 
 		[Test()]
+		[ExpectedException(typeof(Exception))]
+		public void TestInvalidAdd()
+		{
+			var manaPool = new ManaPool ();
+
+			manaPool.Add (COLOR.Black, -1);
+		}
+
+		[Test()]
 		public void TestRemove()
 		{
 			var manaPool = new ManaPool ();
@@ -58,6 +66,15 @@ namespace mtgfoolTests.Objects
 
 			Assert.IsFalse (manaPool.Remove (COLOR.White, 1));
 			Assert.IsFalse (manaPool.Remove (COLOR.Blue, 4));
+		}
+
+		[Test()]
+		[ExpectedException(typeof(Exception))]
+		public void TestInvalidRemove()
+		{
+			var manaPool = new ManaPool ();
+
+			manaPool.Remove (COLOR.Black, -1);
 		}
 
 		[Test()]

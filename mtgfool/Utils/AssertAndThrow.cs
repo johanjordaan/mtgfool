@@ -5,7 +5,7 @@ namespace mtgfool.Utils
 	public class AssertAndThrow
 	{
 		public static void IsTrue(bool condition) {
-			if(condition) 
+			if(!condition) 
 				throw new Exception();
 		}
 	}
