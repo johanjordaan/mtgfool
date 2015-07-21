@@ -43,11 +43,17 @@
     <Compile Include="Objects\Enums.cs" />
     <Compile Include="Utils\EnumUtil.cs" />
     <Compile Include="Utils\AssertAndThrow.cs" />
+    <Compile Include="Base\IdObject.cs" />
+    <Compile Include="Objects\CardFactory.cs" />
+    <Compile Include="Cards\Lands\Mountain.cs" />
+    <Compile Include="Objects\ICardTemplate.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Base\" />
     <Folder Include="Objects\" />
     <Folder Include="Utils\" />
+    <Folder Include="Cards\" />
+    <Folder Include="Cards\Lands\" />
   </ItemGroup>
 </Project>

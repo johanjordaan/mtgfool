@@ -43,7 +43,7 @@ namespace mtgfoolTests.Objects
 		}
 
 		[Test()]
-		[ExpectedException(typeof(Exception))]
+		[ExpectedException(typeof(Exception),ExpectedMessage=null)]
 		public void TestInvalidAdd()
 		{
 			var manaPool = new ManaPool ();

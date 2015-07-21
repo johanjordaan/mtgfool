@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using mtgfool.Base;
 
 namespace mtgfool.Objects
 {
-	public class Game
+	public class Game:IdObject
 	{
 		public Dictionary<string, Card> Cards { get; private set; }
 		public void AddCard(Card card)
@@ -17,7 +18,7 @@ namespace mtgfool.Objects
 			Players.Add(player);
 		}
 
-		public Game()
+		public Game():base()
 		{
 			Cards = new Dictionary<string, Card>();
 		}
