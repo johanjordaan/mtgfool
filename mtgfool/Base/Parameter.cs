@@ -18,6 +18,18 @@ namespace mtgfool.Base
 			Name = name;
 			ValueGenerator = valueGenerator;
 		}
+
+		public Parameter (string name,string value)
+		{
+			Name = name;
+			ValueGenerator = (card) => new List<string>() { value }; 
+		}
+
+		public Parameter (string name,List<string> values)
+		{
+			Name = name;
+			ValueGenerator = (card) => values; 
+		}
 	}
 }
 

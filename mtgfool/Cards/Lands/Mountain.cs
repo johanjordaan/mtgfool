@@ -16,7 +16,16 @@ namespace mtgfool.Cards
 			Actions = new Dictionary<string, IFunction<Card>> ();
 
 			Actions.Add ("PlayLandFromHand", new PlayLandFromHand ());
+			Actions.Add ("TapForMana", new TapLandForMana ());
 
+
+			Func<Card,List<string>> r1 = (card) => new List<string>() { card.Id }; 
+			var parameterList = new ParameterList<Card> ();
+			parameterList.Add(new Parameter<Card>("target",r1));
+
+			var parameterList2 = new ParameterList<Card> ();
+			parameterList2.Add(new Parameter<Card>("target",r1));
+			parameterList2.Add(new Parameter<Card>("color",COLOR.Red.ToString()));
 		}
 	}
 }

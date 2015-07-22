@@ -22,9 +22,7 @@ namespace mtgfool.Objects
 			
 		public static Card GetInstance(string name, Player player)
 		{
-			//var actions = cardTemplates[name];
-
-			return new Card(name, player);
+			return new Card(cardTemplates[name],player);
 		}
 	}
 }

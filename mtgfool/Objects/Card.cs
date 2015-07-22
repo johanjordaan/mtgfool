@@ -7,10 +7,16 @@ namespace mtgfool.Objects
 {
 	public class Card : IdObject,IContext
 	{
-
-		public String Name { get; private set; }
-		//public Dictionary<string, List<IFunction<Card>>> Actions { get; private set; }
+		public ICardTemplate CardTemplate { get; private set; }
 		public Player Player { get; private set; }
+
+		public string Name 
+		{
+			get {
+				return String.Format ("{0}[{1}]", CardTemplate.Name, Id);
+			}
+		}
+
 
 		public bool Tapped { get; private set; }
 		public void Tap()
@@ -29,10 +35,9 @@ namespace mtgfool.Objects
 			Location = newLocation;
 		}
 
-		public Card(string name,Player player):base()
+		public Card(ICardTemplate cardTemplate,Player player):base()
 		{
-
-			Name = name;
+			CardTemplate = cardTemplate; 
 			Player = player;
 
 			Location = LOCATION.Library;

@@ -48,6 +48,7 @@
     <Compile Include="Objects\ICardTemplate.cs" />
     <Compile Include="Cards\Lands\Functions\PlayLandFromHand.cs" />
     <Compile Include="Base\ParameterList.cs" />
+    <Compile Include="Cards\Lands\Functions\TapLandForMana.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
