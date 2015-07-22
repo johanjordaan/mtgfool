@@ -9,7 +9,7 @@ namespace mtgfool.Objects
 		public Dictionary<string, Card> Cards { get; private set; }
 		public void AddCard(Card card)
 		{
-			//Cards.Add(card.Id, card);
+			Cards.Add(card.Id, card);
 		}
 
 		public List<Player> Players { get; private set; }

@@ -3,11 +3,10 @@ using System.Collections.Generic;
 
 namespace mtgfool.Base
 {
-	public interface IFunction
+	public interface IFunction<CONTEXT> where CONTEXT:IContext
 	{
-		List<Dictionary<string,string>> Expand ();
-		bool CanExecute (Dictionary<string,string> parameters);
-		bool Execute (Dictionary<string,string> parameters);
+		bool CanExecute (CONTEXT context, Dictionary<string,string> parameters);
+		bool Execute (CONTEXT contextm, Dictionary<string,string> parameters);
 	}
 }
 

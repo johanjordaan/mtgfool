@@ -7,6 +7,7 @@ namespace mtgfool.Objects
 {
 	public class Card : IdObject,IContext
 	{
+
 		public String Name { get; private set; }
 		//public Dictionary<string, List<IFunction<Card>>> Actions { get; private set; }
 		public Player Player { get; private set; }
