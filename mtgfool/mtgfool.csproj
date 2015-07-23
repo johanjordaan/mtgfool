@@ -53,6 +53,7 @@
     <Compile Include="Base\ParameterList.cs" />
     <Compile Include="Cards\Lands\Functions\TapLandForMana.cs" />
     <Compile Include="Utils\FisherYatesShuffle.cs" />
+    <Compile Include="Base\Closure.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
