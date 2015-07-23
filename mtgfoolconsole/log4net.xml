@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<log4net>
+    <!-- appenders go here -->
+    <root>
+        <level value="INFO" />
+        <appender-ref ref="myLogAppender" />
+    </root>
+
+    <!--logger name="MyNamespace.Foo.Bar">
+        <level value="DEBUG" />
+    </logger-->
+</log4net>
+

@@ -8,7 +8,7 @@ namespace mtgfool.Base
 
 		public IdObject ()
 		{
-			Id = Guid.NewGuid().ToString();
+			Id = Guid.NewGuid ().ToString ("N");
 		}
 	}
 }

@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using mtgfool.Base;
+using log4net;
+using mtgfool.Utils;
 
 namespace mtgfool.Objects
 {
 	public class Game:IdObject
 	{
+		ILog log = LogManager.GetLogger(typeof(Game));
+
 		public Dictionary<string, Card> Cards { get; private set; }
 		public void AddCard(Card card)
 		{
@@ -16,6 +20,7 @@ namespace mtgfool.Objects
 		public void AddPlayer(Player player)
 		{
 			Players.Add(player);
+			log.Info (String.Format ("Player [{0}] joined game [{1}]",player.Id,Id));
 		}
 		public Player ActivePlayer { get; private set; }
 
@@ -23,31 +28,35 @@ namespace mtgfool.Objects
 		public bool Started { get; private set; }
 		public bool Start()
 		{
-			if (Players.Count < 2)
+			if (Players.Count < 2) {
+				log.Error (String.Format ("Cannot start game [{0}] with [{1}] players (At least 2 players required).",Id,Players.Count));
 				return false;
+			}
 
 			var r = new Random (); 
-			ActivePlayer = Players[r.Next (Players.Count)];
+			Players.Shuffle ();
+			ActivePlayer = Players [0];
 
 			TurnNumber = 0;
 
+			CurrentPhase = PHASE.Setup;
+
 			Started = true;
+
+			log.Info (String.Format ("Game [{0}] started with [{1}] players",Id,Players.Count));
+
+			NextPhase ();
 
 			return true;
 		}
 
 		private void nextPlayer()
 		{
-			var i = Players.IndexOf (ActivePlayer);
-			if (i + 1 < Players.Count)
-				i = 0;
-			else
-				i++;
-
-			ActivePlayer = Players [i];
-
+			var nextPlayerIndex = Players.IndexOf (ActivePlayer) +1;
+			if (nextPlayerIndex >= Players.Count)
+				nextPlayerIndex = 0;	
+			ActivePlayer = Players [nextPlayerIndex];
 		}
-
 
 		private void nextTurn() 
 		{
@@ -58,7 +67,9 @@ namespace mtgfool.Objects
 		public PHASE CurrentPhase { get; private set; }
 		public void NextPhase()
 		{
-			if (CurrentPhase == PHASE.Untap) {
+			if (CurrentPhase == PHASE.Setup) {
+				CurrentPhase = PHASE.Untap;
+			} else if (CurrentPhase == PHASE.Untap) {
 				CurrentPhase = PHASE.Upkeep;
 			} else if (CurrentPhase == PHASE.Upkeep) {
 				CurrentPhase = PHASE.Draw;
@@ -72,7 +83,10 @@ namespace mtgfool.Objects
 				CurrentPhase = PHASE.End;
 			} else if (CurrentPhase == PHASE.End) {
 				nextTurn ();
+				CurrentPhase = PHASE.Untap;
 			} 
+
+			log.Info (String.Format ("Game [{0}], Turn [{1}], ActivePlayer [{2}], Phase [{3}]",Id,TurnNumber,ActivePlayer.Id,CurrentPhase.ToString()));
 		}
 
 
@@ -81,6 +95,7 @@ namespace mtgfool.Objects
 			Started = false;
 			Cards = new Dictionary<string, Card>();
 			Players = new List<Player> ();
+			log.Info (String.Format ("New game [{0}] created",Id));
 		}
 	}
 }

@@ -29,6 +29,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -49,6 +52,7 @@
     <Compile Include="Cards\Lands\Functions\PlayLandFromHand.cs" />
     <Compile Include="Base\ParameterList.cs" />
     <Compile Include="Cards\Lands\Functions\TapLandForMana.cs" />
+    <Compile Include="Utils\FisherYatesShuffle.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -58,5 +62,8 @@
     <Folder Include="Cards\" />
     <Folder Include="Cards\Lands\" />
     <Folder Include="Cards\Lands\Functions\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>
