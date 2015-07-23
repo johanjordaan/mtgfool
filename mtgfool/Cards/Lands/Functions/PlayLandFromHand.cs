@@ -5,24 +5,46 @@ using mtgfool.Objects;
 
 namespace mtgfool.Cards
 {
-	public class PlayLandFromHand:IFunction<Card>
+	public class PlayLandFromHand:BaseFunction
 	{
-		public bool CanExecute (Card card,Dictionary<string, string> parameters)
+		public override bool CanExecute (IContext context,Dictionary<string, string> parameters)
 		{
+			var card = context as Card;
+
 			var target = parameters["target"];
 
-			if (card.Location != LOCATION.Hand)
-				return false;
 			if (card.Id != target)
 				return false;
-			
-			return false;
+			if (card.Location != LOCATION.Hand)
+				return false;
+			if (card.Player != card.Player.Game.ActivePlayer)
+				return false;
+			if (card.Player.Game.CurrentPhase != PHASE.FirstMain && card.Player.Game.CurrentPhase != PHASE.SecondMain)
+				return false;
+
+			return true;
 		}
 
-		public bool Execute (Card card,Dictionary<string, string> parameters)
+		public override bool Execute (IContext context,Dictionary<string, string> parameters)
 		{
+			var card = context as Card;
 			card.SetLocation(LOCATION.Battlefield);
 			return true;
+		}
+
+		public PlayLandFromHand(ParameterList<IContext> extraParameters):base(extraParameters) {
+			Func<IContext,List<string>> identitySelector = (context) => {
+				var card = context as Card;
+				return new List<string> () { card.Id }; 
+			};
+			parameters.Add(new Parameter<IContext>("target",identitySelector));
+		}
+		public PlayLandFromHand():base() {
+			Func<IContext,List<string>> identitySelector = (context) => {
+				var card = context as Card;
+				return new List<string> () { card.Id }; 
+			};
+			parameters.Add(new Parameter<IContext>("target",identitySelector));
 		}
 	}
 }

@@ -32,8 +32,7 @@ namespace mtgfool.Objects
 				log.Error (String.Format ("Cannot start game [{0}] with [{1}] players (At least 2 players required).",Id,Players.Count));
 				return false;
 			}
-
-			var r = new Random (); 
+				
 			Players.Shuffle ();
 			ActivePlayer = Players [0];
 
@@ -89,6 +88,26 @@ namespace mtgfool.Objects
 			log.Info (String.Format ("Game [{0}], Turn [{1}], ActivePlayer [{2}], Phase [{3}]",Id,TurnNumber,ActivePlayer.Id,CurrentPhase.ToString()));
 		}
 
+		public List<Closure> GetValidActions()
+		{
+			var retVal = new List<Closure> ();
+			foreach (var card in Cards) {
+				foreach (var action in card.Value.CardTemplate.Actions) {
+					var parameterLists = action.Value.GetParameters ().Expand(card.Value);
+					foreach(var parameterList in parameterLists) { 
+						if (action.Value.CanExecute (card.Value, parameterList)) {
+							retVal.Add (new Closure (action.Value, card.Value, parameterList));
+							Console.Out.WriteLine ("*[{0}] on [{1}] [{2}]", action.Key, card.Value.Name, card.Value.Id);
+						} else {
+							Console.Out.WriteLine(" [{0}] on [{1}] [{2}]",action.Key,card.Value.Name,card.Value.Id);
+						}
+
+					}
+				}
+			}
+
+			return retVal;;
+		}
 
 		public Game():base()
 		{

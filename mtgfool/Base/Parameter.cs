@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace mtgfool.Base
 {
-	public class Parameter<CONTEXT> where CONTEXT:IContext
+	public class Parameter<CONTEXT>
 	{
 		public string Name { get; private set; }
 		public Func<CONTEXT,List<string>> ValueGenerator { get; private set; }

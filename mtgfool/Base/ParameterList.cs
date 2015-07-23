@@ -4,8 +4,28 @@ using System.Collections.Generic;
 
 namespace mtgfool.Base
 {
-	public class ParameterList<CONTEXT> where CONTEXT:IContext
+	public class ParameterList<CONTEXT>:IEnumerable<Parameter<CONTEXT>>
 	{
+		#region IEnumerable implementation
+
+		public IEnumerator<Parameter<CONTEXT>> GetEnumerator ()
+		{
+			return parameters.GetEnumerator ();
+		}
+
+		#endregion
+
+		#region IEnumerable implementation
+
+		System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator ()
+		{
+			return parameters.GetEnumerator ();
+		}
+
+		#endregion
+
+		
+
 		private List<Parameter<CONTEXT>> parameters = new List<Parameter<CONTEXT>> ();
 		public void Add(Parameter<CONTEXT> parameter) {
 			parameters.Add (parameter);
