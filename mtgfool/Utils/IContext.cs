@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 
-namespace mtgfool.Base
+namespace mtgfool.Utils
 {
 	public interface IContext
 	{

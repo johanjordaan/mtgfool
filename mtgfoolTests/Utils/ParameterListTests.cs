@@ -1,11 +1,11 @@
 ﻿using NUnit.Framework;
 using System;
 using System.Collections.Generic;
-using mtgfool.Base;
+using mtgfool.Utils;
 
-namespace mtgfoolTests.Base
+namespace mtgfoolTests.Utils
 {
-	public class SampleContext:mtgfool.Base.IContext
+	public class SampleContext:mtgfool.Utils.IContext
 	{
 	}
 
@@ -22,9 +22,9 @@ namespace mtgfoolTests.Base
 
 			var context = new SampleContext ();
 			var parameterList = new ParameterList<SampleContext> ();
-			parameterList.Add (new mtgfool.Base.Parameter<SampleContext> ("number",r1));
-			parameterList.Add (new mtgfool.Base.Parameter<SampleContext> ("letter",r2));
-			parameterList.Add (new mtgfool.Base.Parameter<SampleContext> ("color",r3));
+			parameterList.Add (new mtgfool.Utils.Parameter<SampleContext> ("number",r1));
+			parameterList.Add (new mtgfool.Utils.Parameter<SampleContext> ("letter",r2));
+			parameterList.Add (new mtgfool.Utils.Parameter<SampleContext> ("color",r3));
 
 			var x = parameterList.Expand (context);
 

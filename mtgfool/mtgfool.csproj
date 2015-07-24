@@ -35,18 +35,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Base\IFunction.cs" />
-    <Compile Include="Base\Parameter.cs" />
-    <Compile Include="Base\IContext.cs" />
     <Compile Include="Utils\EnumUtil.cs" />
     <Compile Include="Utils\AssertAndThrow.cs" />
-    <Compile Include="Base\IdObject.cs" />
     <Compile Include="Cards\Lands\Mountain.cs" />
     <Compile Include="Cards\Lands\Functions\PlayLandFromHand.cs" />
-    <Compile Include="Base\ParameterList.cs" />
     <Compile Include="Cards\Lands\Functions\TapLandForMana.cs" />
     <Compile Include="Utils\FisherYatesShuffle.cs" />
-    <Compile Include="Base\Closure.cs" />
     <Compile Include="Cards\BaseFunction.cs" />
     <Compile Include="Core\Player.cs" />
     <Compile Include="Core\Game.cs" />
@@ -55,11 +49,17 @@
     <Compile Include="Core\Enums.cs" />
     <Compile Include="Core\CardFactory.cs" />
     <Compile Include="Core\ICardTemplate.cs" />
-    <Compile Include="Core\Limits.cs" />
+    <Compile Include="Utils\Closure.cs" />
+    <Compile Include="Utils\IContext.cs" />
+    <Compile Include="Utils\IdObject.cs" />
+    <Compile Include="Utils\IFunction.cs" />
+    <Compile Include="Utils\Parameter.cs" />
+    <Compile Include="Utils\ParameterList.cs" />
+    <Compile Include="Core\Value.cs" />
+    <Compile Include="Utils\EventHub.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <Folder Include="Base\" />
     <Folder Include="Utils\" />
     <Folder Include="Cards\" />
     <Folder Include="Cards\Lands\" />

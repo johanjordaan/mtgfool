@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using mtgfool.Base;
+using mtgfool.Utils;
 
-namespace mtgfool.Base
+namespace mtgfool.Utils
 {
 	public class Closure	
 	{

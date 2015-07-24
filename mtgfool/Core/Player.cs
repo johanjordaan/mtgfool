@@ -1,5 +1,5 @@
 ﻿using System;
-using mtgfool.Base;
+using mtgfool.Utils;
 
 namespace mtgfool.Core
 {

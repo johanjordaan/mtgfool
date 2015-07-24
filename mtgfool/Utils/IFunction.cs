@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace mtgfool.Base
+namespace mtgfool.Utils
 {
 	public interface IFunction<CONTEXT> where CONTEXT:IContext
 	{

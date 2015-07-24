@@ -38,12 +38,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Base\" />
-    <Folder Include="Objects\" />
+    <Folder Include="Utils\" />
+    <Folder Include="Core\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Objects\ManaPoolTests.cs" />
-    <Compile Include="Base\ParameterListTests.cs" />
+    <Compile Include="Utils\ParameterListTests.cs" />
+    <Compile Include="Core\ManaPoolTests.cs" />
+    <Compile Include="Utils\EventHubTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\mtgfool\mtgfool.csproj">

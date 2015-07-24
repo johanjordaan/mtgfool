@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using mtgfool.Base;
 using log4net;
 using mtgfool.Utils;
 

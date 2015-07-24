@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace mtgfool.Base
+namespace mtgfool.Utils
 {
 	public class IdObject
 	{

@@ -7,5 +7,6 @@ namespace mtgfool.Core
 	public enum PHASE { Setup, Untap, Upkeep, Draw, FirstMain, Combat, SecondMain, End}
 
 
+	public enum FREQUENCY { None, Step, Phase, Turn }
 }
 

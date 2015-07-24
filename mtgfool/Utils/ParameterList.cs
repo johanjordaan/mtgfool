@@ -1,8 +1,8 @@
 ﻿using System;
-using mtgfool.Base;
+using mtgfool.Utils;
 using System.Collections.Generic;
 
-namespace mtgfool.Base
+namespace mtgfool.Utils
 {
 	public class ParameterList<CONTEXT>:IEnumerable<Parameter<CONTEXT>>
 	{
