@@ -68,21 +68,56 @@ namespace mtgfool.Objects
 		{
 			if (CurrentPhase == PHASE.Setup) {
 				CurrentPhase = PHASE.Untap;
+				foreach (var card in Cards) {
+					if (card.Value.Tapped && card.Value.Player == ActivePlayer) {
+						card.Value.Untap ();
+					}
+				}
+				foreach (var player in Players) {
+					player.ManaPool.Clear ();
+				}
+
 			} else if (CurrentPhase == PHASE.Untap) {
 				CurrentPhase = PHASE.Upkeep;
+				foreach (var player in Players) {
+					player.ManaPool.Clear ();
+				}
 			} else if (CurrentPhase == PHASE.Upkeep) {
 				CurrentPhase = PHASE.Draw;
+				foreach (var player in Players) {
+					player.ManaPool.Clear ();
+				}
 			} else if (CurrentPhase == PHASE.Draw) {
 				CurrentPhase = PHASE.FirstMain;
+				foreach (var player in Players) {
+					player.ManaPool.Clear ();
+				}
 			} else if (CurrentPhase == PHASE.FirstMain) {
 				CurrentPhase = PHASE.Combat;
+				foreach (var player in Players) {
+					player.ManaPool.Clear ();
+				}
 			} else if (CurrentPhase == PHASE.Combat) {
 				CurrentPhase = PHASE.SecondMain;
+				foreach (var player in Players) {
+					player.ManaPool.Clear ();
+				}
 			} else if (CurrentPhase == PHASE.SecondMain) {
 				CurrentPhase = PHASE.End;
+				foreach (var player in Players) {
+					player.ManaPool.Clear ();
+				}
 			} else if (CurrentPhase == PHASE.End) {
 				nextTurn ();
 				CurrentPhase = PHASE.Untap;
+				foreach (var player in Players) {
+					player.ManaPool.Clear ();
+				}
+				foreach (var card in Cards) {
+					if (card.Value.Tapped && card.Value.Player == ActivePlayer) {
+						card.Value.Untap ();
+					}
+				}
 			} 
 
 			log.Info (String.Format ("Game [{0}], Turn [{1}], ActivePlayer [{2}], Phase [{3}]",Id,TurnNumber,ActivePlayer.Id,CurrentPhase.ToString()));

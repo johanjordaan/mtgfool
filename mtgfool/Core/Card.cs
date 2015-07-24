@@ -9,6 +9,7 @@ namespace mtgfool.Objects
 	{
 		public ICardTemplate CardTemplate { get; private set; }
 		public Player Player { get; private set; }
+		public Game Game { get; private set; }
 
 		public string Name 
 		{
@@ -35,14 +36,15 @@ namespace mtgfool.Objects
 			Location = newLocation;
 		}
 
-		public Card(ICardTemplate cardTemplate,Player player):base()
+		public Card(ICardTemplate cardTemplate,Player player, Game game):base()
 		{
 			CardTemplate = cardTemplate; 
 			Player = player;
 
 			Location = LOCATION.Library;
 
-			Player.Game.AddCard(this);
+			Game = game;
+			Game.AddCard(this);
 		}
 	}
 }

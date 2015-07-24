@@ -21,7 +21,7 @@ namespace mtgfoolconsole
 			game.AddPlayer (player2);
 			game.Start ();
 
-			while (game.TurnNumber < 3) {
+			while (game.TurnNumber < 4) {
 				game.NextPhase ();
 				var va = game.GetValidActions ();
 				if (va.Count > 0) {
