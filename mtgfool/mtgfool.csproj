@@ -57,6 +57,7 @@
     <Compile Include="Utils\ParameterList.cs" />
     <Compile Include="Core\Value.cs" />
     <Compile Include="Utils\EventHub.cs" />
+    <Compile Include="Core\ValueLimits.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

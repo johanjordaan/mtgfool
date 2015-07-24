@@ -7,13 +7,13 @@ namespace mtgfool.Core
 {
 	public class ManaPool
 	{
-		private Dictionary<COLOR, int> mana  = new Dictionary<COLOR, int>();
-		public void Add(COLOR color,int amount) 
+		private Dictionary<COLOR, Value> mana  = new Dictionary<COLOR, Value>();
+		public bool Add(COLOR color,int amount) 
 		{
 			AssertAndThrow.IsTrue (mana.ContainsKey (color));
 			AssertAndThrow.IsTrue (amount > 0);
 
-			mana[color] += amount;
+			return mana[color].Inc(amount);
 		}
 
 		public bool Remove(COLOR color,int amount)
@@ -21,33 +21,26 @@ namespace mtgfool.Core
 			AssertAndThrow.IsTrue (mana.ContainsKey (color));
 			AssertAndThrow.IsTrue (amount > 0);
 
-			if (mana[color] < amount)
-			{
-				return false;
-			}
-			else
-			{
-				mana[color] -= amount;
-				return true;
-			}
+			return mana [color].Dec (amount);
 		}
 
 		public int this[COLOR key] 
 		{
-			get { return mana [key]; }
+			get { return mana [key].Current; }
 		}
 
 		public void Clear()
 		{
-			mana.Clear();
 			foreach (var color in EnumUtil.GetValues<COLOR>()) {
-				mana [color] = 0;
+				mana [color].Reset();
 			}
 		}
 
 		public ManaPool() 
 		{
-			Clear();
+			foreach (var color in EnumUtil.GetValues<COLOR>()) {
+				mana [color] = new Value (0,new ValueLimits(0,true,0,false));
+			}
 		}
 
 	}

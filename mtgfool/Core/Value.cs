@@ -4,23 +4,24 @@ namespace mtgfool.Core
 {
 	public class Value
 	{
-		public int Min { get; private set; }
+		public ValueLimits Limits { get; private set; }
 		public int Initial { get; private set; }
 		public int Current { get; private set; }
-		public int Max { get; private set; }
-		public FREQUENCY ResetFrequency { get; private set;}
+
 
 		public bool Inc(int amount) {
-			if (Current + amount > Max)
-				return false;
+			if(Limits.HasMax)
+				if (Current + amount > Limits.Max)
+					return false;
 
 			Current += amount;
 			return true;
 		}
 
 		public bool Dec(int amount) {
-			if (Current - amount < Min)
-				return false;
+			if(Limits.HasMin)
+				if (Current - amount < Limits.Min)
+					return false;
 
 			Current -= amount;
 			return true;
@@ -30,10 +31,23 @@ namespace mtgfool.Core
 			Current = Initial;
 		}
 
-		public Value (int min,int max,int initial,FREQUENCY resetFrequency)
+		public Value ()
 		{
-			Min = min;
-			Max = max;
+			Limits = new ValueLimits (0, false, 0, false);
+			Initial = 0;
+			Current = Initial;
+		}
+
+		public Value (int initial)
+		{
+			Limits = new ValueLimits (0, false, 0, false);
+			Initial = initial;
+			Current = Initial;
+		}
+
+		public Value (int initial,ValueLimits limits)
+		{
+			Limits = limits;
 			Initial = initial;
 			Current = Initial;
 		}
