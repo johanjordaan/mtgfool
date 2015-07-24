@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace mtgfool
+namespace mtgfool.Core
 {
 	public class Limits
 	{

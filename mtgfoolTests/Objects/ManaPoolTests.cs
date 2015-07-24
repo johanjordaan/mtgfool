@@ -1,10 +1,10 @@
 ﻿using NUnit.Framework;
 using System;
 using System.Collections.Generic;
-using mtgfool.Objects;
+using mtgfool.Core;
 using mtgfool.Utils;
 
-namespace mtgfoolTests.Objects
+namespace mtgfoolTests.Core
 {
 	[TestFixture ()]
 	public class ManaPoolTests

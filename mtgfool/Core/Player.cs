@@ -1,7 +1,7 @@
 ﻿using System;
 using mtgfool.Base;
 
-namespace mtgfool.Objects
+namespace mtgfool.Core
 {
 	public class Player : IdObject
 	{

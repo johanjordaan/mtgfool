@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using mtgfool.Utils;
 using System.Diagnostics;
 
-namespace mtgfool.Objects
+namespace mtgfool.Core
 {
 	public class ManaPool
 	{

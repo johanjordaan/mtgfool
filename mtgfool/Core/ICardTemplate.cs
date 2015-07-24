@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using mtgfool.Base;
 
-namespace mtgfool.Objects
+namespace mtgfool.Core
 {
 	public interface ICardTemplate
 	{

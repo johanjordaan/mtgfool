@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Linq;
 
-namespace mtgfool.Objects
+namespace mtgfool.Core
 {
 	public class CardFactory
 	{

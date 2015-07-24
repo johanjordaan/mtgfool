@@ -10,12 +10,12 @@ namespace mtgfoolconsole
 		{
 			BasicConfigurator.Configure ();
 
-			var game = new mtgfool.Objects.Game ();
-			var player1 = new mtgfool.Objects.Player ("Johan",game);
-			var player2 = new mtgfool.Objects.Player ("Liliana",game);
-			var mountain = mtgfool.Objects.CardFactory.GetInstance ("Mountain", player1);
+			var game = new mtgfool.Core.Game ();
+			var player1 = new mtgfool.Core.Player ("Johan",game);
+			var player2 = new mtgfool.Core.Player ("Liliana",game);
+			var mountain = mtgfool.Core.CardFactory.GetInstance ("Mountain", player1);
 
-			mountain.SetLocation (mtgfool.Objects.LOCATION.Hand);
+			mountain.SetLocation (mtgfool.Core.LOCATION.Hand);
 
 			game.AddPlayer (player1);
 			game.AddPlayer (player2);

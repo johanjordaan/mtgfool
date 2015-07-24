@@ -4,7 +4,7 @@ using mtgfool.Base;
 using log4net;
 using mtgfool.Utils;
 
-namespace mtgfool.Objects
+namespace mtgfool.Core
 {
 	public class Game:IdObject
 	{

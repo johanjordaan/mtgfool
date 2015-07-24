@@ -1,5 +1,5 @@
 ﻿using System;
-using mtgfool.Objects;
+using mtgfool.Core;
 using mtgfool.Base;
 using System.Collections.Generic;
 

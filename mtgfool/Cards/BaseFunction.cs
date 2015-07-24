@@ -1,6 +1,6 @@
 ﻿using System;
 using mtgfool.Base;
-using mtgfool.Objects;
+using mtgfool.Core;
 using System.Collections.Generic;
 
 namespace mtgfool.Cards
