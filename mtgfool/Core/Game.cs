@@ -37,13 +37,13 @@ namespace mtgfool.Core
 
 			TurnNumber = 0;
 
-			CurrentPhase = PHASE.Setup;
 
 			Started = true;
 
 			log.Info (String.Format ("Game [{0}] started with [{1}] players",Id,Players.Count));
 
-			NextPhase ();
+			CurrentPhase = PHASE.Beginning;
+			CurrentStep = STEP.Untap;
 
 			return true;
 		}
@@ -60,9 +60,55 @@ namespace mtgfool.Core
 		{
 			nextPlayer ();
 			TurnNumber++;
+			EventHub.Signal(EventConstants.EndOfTurn,null,null);
 		}
 
 		public PHASE CurrentPhase { get; private set; }
+		public STEP CurrentStep { get; private set; }
+		public void NextStep() 
+		{
+			if (CurrentPhase == PHASE.Beginning) {
+				if (CurrentStep == STEP.Untap) {
+					CurrentStep = STEP.Upkeep;
+				} else if (CurrentStep == STEP.Upkeep) {
+					CurrentStep = STEP.Draw;
+				} else if (CurrentStep == STEP.Draw) {
+					CurrentPhase = PHASE.FirstMain; 
+					CurrentStep = STEP.FirstMain;
+				}
+			} else if (CurrentPhase == PHASE.FirstMain) {
+				CurrentPhase = PHASE.Combat; 
+				CurrentStep = STEP.BeginCombat;
+			} else if (CurrentPhase == PHASE.Combat) {
+				if (CurrentStep == STEP.BeginCombat) {
+					CurrentStep = STEP.DeclareAttackers;
+				} else if (CurrentStep == STEP.DeclareAttackers) {
+					CurrentStep = STEP.DeclareBlockers;
+				} else if (CurrentStep == STEP.DeclareBlockers) {
+					CurrentStep = STEP.CombatDamage;
+				} else if (CurrentStep == STEP.CombatDamage) {
+					CurrentStep = STEP.CombatEnd;
+				} else if (CurrentStep == STEP.CombatDamage) {
+					CurrentPhase = PHASE.SecondMain;
+					CurrentStep = STEP.SecondMain;
+				}
+			} else if (CurrentPhase == PHASE.SecondMain) {
+				CurrentPhase = PHASE.End;
+				CurrentStep = STEP.End;
+			} else if (CurrentPhase == PHASE.End) {
+				if (CurrentStep == STEP.End) {
+					CurrentStep = STEP.CleanUp;
+				} else {
+					nextTurn();
+					CurrentPhase = PHASE.Beginning;
+					CurrentStep = STEP.Untap;
+				}
+			}
+		}
+
+
+		/*
+
 		public void NextPhase()
 		{
 			if (CurrentPhase == PHASE.Setup) {
@@ -121,6 +167,7 @@ namespace mtgfool.Core
 
 			log.Info (String.Format ("Game [{0}], Turn [{1}], ActivePlayer [{2}], Phase [{3}]",Id,TurnNumber,ActivePlayer.Id,CurrentPhase.ToString()));
 		}
+		*/
 
 		public List<Closure> GetValidActions()
 		{

@@ -22,16 +22,13 @@ namespace mtgfoolconsole
 			game.Start ();
 
 			while (game.TurnNumber < 4) {
-				game.NextPhase ();
+				game.NextStep ();
 				var va = game.GetValidActions ();
 				if (va.Count > 0) {
 					va [0].Execute ();
 				}
 					
 			}
-
-
-			//Console.WriteLine ("Hello World! "+mountain.Id);
 		}
 	}
 }
