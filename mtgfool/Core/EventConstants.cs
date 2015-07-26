@@ -12,6 +12,10 @@ namespace mtgfool.Core
 		public static string EndOfPhase = "End of Phase";
 		public static string StartOfStep = "Start of Step";
 		public static string EndOfStep = "End of Step";
+
+		public static string Tapped = "Tapped";
+		public static string Untapped = "Untapped";
+
 	}
 }
 

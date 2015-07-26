@@ -23,10 +23,12 @@ namespace mtgfool.Core
 		public void Tap()
 		{
 			Tapped = true;
+			EventHub.Signal (EventConstants.Tapped, this, null);
 		}
 		public void Untap()
 		{
 			Tapped = false;
+			EventHub.Signal (EventConstants.Untapped, this, null);
 		}
 
 
@@ -45,6 +47,17 @@ namespace mtgfool.Core
 
 			Game = game;
 			Game.AddCard(this);
+
+			EventHub.AddObserver(EventConstants.StartOfStep,untapHandler);
+		}
+
+
+		private void untapHandler(IContext context,Dictionary<string,string> data) {
+			if (Game.ActivePlayer == Player) {
+				if (Game.CurrentStep == STEP.Untap) {
+					Untap ();
+				}
+			}
 		}
 	}
 }

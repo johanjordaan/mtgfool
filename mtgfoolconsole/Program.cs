@@ -27,8 +27,9 @@ namespace mtgfoolconsole
 				if (va.Count > 0) {
 					va [0].Execute ();
 				}
-					
 			}
+
+			game.End ();
 		}
 	}
 }
