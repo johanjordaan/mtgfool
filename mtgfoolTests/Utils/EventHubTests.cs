@@ -17,11 +17,19 @@ namespace mtgfoolTests.Utils
 		[Test ()]
 		public void Test ()
 		{
+			EventHub.Clear ();
 			var o = new Observer () { Status = "None" };
 			EventHub.AddObserver ("end_of_turn", (context, data) => o.Status = "Signalled" );
 			EventHub.Signal ("end_of_turn",null,null);
 
 			Assert.AreEqual ("Signalled", o.Status);
+		}
+
+		[Test ()]
+		public void TestSignalBeforeAddObserver ()
+		{
+			EventHub.Clear ();
+			EventHub.Signal ("end_of_turn",null,null);
 		}
 	}
 }

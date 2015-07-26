@@ -37,14 +37,23 @@ namespace mtgfool.Core
 
 			TurnNumber = 0;
 
-
 			Started = true;
 
-			log.Info (String.Format ("Game [{0}] started with [{1}] players",Id,Players.Count));
+			EventHub.Signal (EventConstants.StartOfGame, null, null);
 
 			CurrentPhase = PHASE.Beginning;
 			CurrentStep = STEP.Untap;
 
+			EventHub.Signal(EventConstants.StartOfTurn,null,null);
+			EventHub.Signal(EventConstants.StartOfPhase,null,null);
+
+			return true;
+		}
+
+		public bool End()
+		{
+			Started = false;
+			EventHub.Signal(EventConstants.EndOfGame,null,null);
 			return true;
 		}
 
@@ -58,9 +67,26 @@ namespace mtgfool.Core
 
 		private void nextTurn() 
 		{
+			EventHub.Signal (EventConstants.EndOfTurn, null, null);
 			nextPlayer ();
 			TurnNumber++;
-			EventHub.Signal(EventConstants.EndOfTurn,null,null);
+			EventHub.Signal(EventConstants.StartOfTurn,null,null);
+		}
+
+		private void setStep(STEP step) {
+			EventHub.Signal(EventConstants.EndOfStep,null,null);
+			CurrentStep = step;
+			EventHub.Signal (EventConstants.StartOfStep, null, null);
+		}
+
+		private void setPhase(PHASE phase, STEP step) {
+			EventHub.Signal (EventConstants.EndOfStep, null, null);
+			EventHub.Signal (EventConstants.EndOfPhase, null, null);
+			CurrentPhase = phase; 
+			CurrentStep = step;
+			EventHub.Signal (EventConstants.StartOfPhase, null, null);
+			EventHub.Signal (EventConstants.StartOfStep, null, null);
+
 		}
 
 		public PHASE CurrentPhase { get; private set; }
@@ -69,39 +95,34 @@ namespace mtgfool.Core
 		{
 			if (CurrentPhase == PHASE.Beginning) {
 				if (CurrentStep == STEP.Untap) {
-					CurrentStep = STEP.Upkeep;
+					setStep (STEP.Upkeep);
 				} else if (CurrentStep == STEP.Upkeep) {
-					CurrentStep = STEP.Draw;
+					setStep (STEP.Draw);
 				} else if (CurrentStep == STEP.Draw) {
-					CurrentPhase = PHASE.FirstMain; 
-					CurrentStep = STEP.FirstMain;
+					setPhase (PHASE.FirstMain, STEP.FirstMain);
 				}
 			} else if (CurrentPhase == PHASE.FirstMain) {
-				CurrentPhase = PHASE.Combat; 
-				CurrentStep = STEP.BeginCombat;
+				setPhase (PHASE.Combat, STEP.BeginCombat);
 			} else if (CurrentPhase == PHASE.Combat) {
 				if (CurrentStep == STEP.BeginCombat) {
-					CurrentStep = STEP.DeclareAttackers;
+					setStep (STEP.DeclareAttackers);
 				} else if (CurrentStep == STEP.DeclareAttackers) {
-					CurrentStep = STEP.DeclareBlockers;
+					setStep (STEP.DeclareBlockers);
 				} else if (CurrentStep == STEP.DeclareBlockers) {
-					CurrentStep = STEP.CombatDamage;
+					setStep (STEP.CombatDamage);
 				} else if (CurrentStep == STEP.CombatDamage) {
-					CurrentStep = STEP.CombatEnd;
-				} else if (CurrentStep == STEP.CombatDamage) {
-					CurrentPhase = PHASE.SecondMain;
-					CurrentStep = STEP.SecondMain;
+					setStep (STEP.CombatEnd);
+				} else if (CurrentStep == STEP.CombatEnd) {
+					setPhase(PHASE.SecondMain,STEP.SecondMain);
 				}
 			} else if (CurrentPhase == PHASE.SecondMain) {
-				CurrentPhase = PHASE.End;
-				CurrentStep = STEP.End;
+				setPhase(PHASE.End, STEP.End);
 			} else if (CurrentPhase == PHASE.End) {
 				if (CurrentStep == STEP.End) {
-					CurrentStep = STEP.CleanUp;
+					setStep (STEP.CleanUp);
 				} else {
 					nextTurn();
-					CurrentPhase = PHASE.Beginning;
-					CurrentStep = STEP.Untap;
+					setPhase(PHASE.Beginning, STEP.Untap);
 				}
 			}
 		}

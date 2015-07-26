@@ -18,7 +18,13 @@ namespace mtgfool.Utils
 			return id;
 		}
 
+		public static void Clear() {
+			subjects.Clear ();
+		}
+
 		public static void Signal(string subjectName,IContext context, Dictionary<string,string> data) {
+			if (!subjects.ContainsKey (subjectName))
+				return;
 			foreach (var action in subjects[subjectName].Values) {
 				action (context, data);
 			}

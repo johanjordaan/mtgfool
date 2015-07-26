@@ -3,7 +3,7 @@ using mtgfool.Utils;
 
 namespace mtgfool.Core
 {
-	public class Player : IdObject
+	public class Player : IdObject,IContext
 	{
 		public string Name { get; private set; }
 		public Game Game { get; private set; }

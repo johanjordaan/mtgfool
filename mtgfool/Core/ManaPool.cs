@@ -41,6 +41,8 @@ namespace mtgfool.Core
 			foreach (var color in EnumUtil.GetValues<COLOR>()) {
 				mana [color] = new Value (0,new ValueLimits(0,true,0,false));
 			}
+
+			EventHub.AddObserver(EventConstants.EndOfStep,(c,d)=>this.Clear());
 		}
 
 	}
