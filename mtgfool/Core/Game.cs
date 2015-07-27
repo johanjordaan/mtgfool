@@ -136,9 +136,9 @@ namespace mtgfool.Core
 					foreach(var parameterList in parameterLists) { 
 						if (action.Value.CanExecute (card.Value, parameterList)) {
 							retVal.Add (new Closure (action.Value, card.Value, parameterList));
-							Console.Out.WriteLine ("*[{0}] on [{1}] [{2}]", action.Key, card.Value.Name, card.Value.Id);
+							//Console.Out.WriteLine ("*[{0}] on [{1}] [{2}]", action.Key, card.Value.Name, card.Value.Id);
 						} else {
-							Console.Out.WriteLine(" [{0}] on [{1}] [{2}]",action.Key,card.Value.Name,card.Value.Id);
+							//Console.Out.WriteLine(" [{0}] on [{1}] [{2}]",action.Key,card.Value.Name,card.Value.Id);
 						}
 
 					}

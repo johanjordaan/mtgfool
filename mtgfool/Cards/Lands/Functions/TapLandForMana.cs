@@ -33,8 +33,6 @@ namespace mtgfool
 			Enum.TryParse<COLOR>(parameters["color"],out color);
 			card.Player.ManaPool.Add (color,1);
 			card.Tap ();
-
-			Console.Out.WriteLine ("---[{0}] has [{1}]R in their manapool",card.Player.Name,card.Player.ManaPool[color]);
 			return true;
 		}
 
