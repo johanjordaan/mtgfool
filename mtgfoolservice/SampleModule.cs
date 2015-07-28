@@ -47,7 +47,7 @@ namespace mtgfoolservice
 
 		public SampleModule()
 		{
-			Get ["/"] = _ => {
+			Get ["/list"] = _ => {
 				return Response.AsJson (data);
 			};
 
