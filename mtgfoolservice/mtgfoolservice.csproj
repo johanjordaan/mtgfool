@@ -37,22 +37,15 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SampleModule.cs" />
-    <Compile Include="HomeModule.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="views\home.html">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\mtgfool\mtgfool.csproj">
       <Project>{0AC27FE3-C16B-4C23-B6AA-7BA308B18268}</Project>
       <Name>mtgfool</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="views\" />
   </ItemGroup>
 </Project>
