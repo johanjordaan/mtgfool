@@ -38,3 +38,11 @@ Thumbs.db
 
 #dotCover
 *.dotCover
+
+#bower and npm
+bower_components
+node_modules
+
+#compiled
+site
+

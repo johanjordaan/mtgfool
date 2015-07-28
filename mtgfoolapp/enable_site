@@ -1,0 +1,6 @@
+#!/bin/bash
+PWD=`pwd`
+echo $PWD
+ln -s $PWD/nginx.conf /usr/local/etc/nginx/sites-enabled/mtgfool.abicat.com
+nginx -s stop
+nginx
