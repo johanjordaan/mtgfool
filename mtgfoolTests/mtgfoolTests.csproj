@@ -45,6 +45,7 @@
     <Compile Include="Utils\ParameterListTests.cs" />
     <Compile Include="Core\ManaPoolTests.cs" />
     <Compile Include="Utils\EventHubTests.cs" />
+    <Compile Include="Core\MatchTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\mtgfool\mtgfool.csproj">

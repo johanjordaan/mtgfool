@@ -1,6 +1,7 @@
 ﻿using System;
 using mtgfool;
 using log4net.Config;
+using Nancy.Hosting.Self;
 
 namespace mtgfoolconsole
 {
@@ -10,7 +11,13 @@ namespace mtgfoolconsole
 		{
 			BasicConfigurator.Configure ();
 
-			var game = new mtgfool.Core.Game ();
+			using (var host = new NancyHost(new Uri("http://localhost:1234")))
+			{
+				host.Start();
+				Console.ReadLine();
+			}
+
+			/*var game = new mtgfool.Core.Game ();
 			var player1 = new mtgfool.Core.Player ("Johan",game);
 			var player2 = new mtgfool.Core.Player ("Liliana",game);
 			var mountain = mtgfool.Core.CardFactory.GetInstance ("Mountain", player1);
@@ -29,7 +36,7 @@ namespace mtgfoolconsole
 				}
 			}
 
-			game.End ();
+			game.End ();*/
 		}
 	}
 }

@@ -9,6 +9,7 @@ namespace mtgfool.Core
 	{
 		public ICardTemplate CardTemplate { get; private set; }
 		public Player Player { get; private set; }
+		public Player Owner { get; private set; }
 		public Game Game { get; private set; }
 
 		public string Name 
@@ -42,6 +43,7 @@ namespace mtgfool.Core
 		{
 			CardTemplate = cardTemplate; 
 			Player = player;
+			Owner = Player;
 
 			Location = LOCATION.Library;
 
